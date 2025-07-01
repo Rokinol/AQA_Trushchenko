@@ -1,7 +1,7 @@
 package Lesson_4;
 
 public  class Bowl {
-    public int foodAmount;
+    private int foodAmount;
 
     public Bowl(int initialAmount) {
         //Подсмотрел как сделать гарантию неотрицательного количества еды
