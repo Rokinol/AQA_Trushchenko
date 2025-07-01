@@ -1,5 +1,11 @@
 package Lesson_4;
 
+import Lesson_4.Animals.Cat;
+import Lesson_4.Animals.Dog;
+import Lesson_4.Figures.Circle;
+import Lesson_4.Figures.Rectangle;
+import Lesson_4.Figures.Triangle;
+
 public class MainLesson4 {
     public static void main(String[] args) {
         //Task1
@@ -67,9 +73,9 @@ public class MainLesson4 {
         System.out.println("Собак: " + Dog.getDogCount());
 
         //Task2
-        GeometricFigures circle = new GeometricFigures.Circle(5.0, "Красный", "Черный");
-        GeometricFigures rectangle = new GeometricFigures.Rectangle(4.0, 6.0, "Синий", "Белый");
-        GeometricFigures triangle = new GeometricFigures.Triangle(3.0, 4.0, 5.0, "Зеленый", "Желтый");
+        Circle circle = new Circle(5.0, "Красный", "Черный");
+        Rectangle rectangle = new Rectangle(4.0, 6.0, "Синий", "Белый");
+        Triangle triangle = new Triangle(3.0, 4.0, 5.0, "Зеленый", "Желтый");
 
         //Выводим информацию о фигурах
         System.out.println("Характеристики круга:");
