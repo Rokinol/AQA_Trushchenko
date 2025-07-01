@@ -3,14 +3,14 @@ package Lesson_3;
 import java.time.LocalDate;
 
 public class Product {
-    public String name;
-    public LocalDate date;
-    public String manufacturer;
-    public String country;
-    public double price;
-    public boolean isReserved;
+    private String name;
+    private LocalDate date;
+    private String manufacturer;
+    private String country;
+    private double price;
+    private boolean isReserved;
 
-    public Product(String name, LocalDate date, String manufacturer, String country, int price, boolean isReserved) {
+    protected Product(String name, LocalDate date, String manufacturer, String country, int price, boolean isReserved) {
         this.name = name;
         this.date = date;
         this.manufacturer = manufacturer;
@@ -18,7 +18,7 @@ public class Product {
         this.price = price;
         this.isReserved = isReserved;
     }
-    public void printProductInfo(){
+    protected void printProductInfo(){
         System.out.println("Товар: " + name);
         System.out.println("Дата производства: " + date);
         System.out.println("Производство :" + manufacturer);

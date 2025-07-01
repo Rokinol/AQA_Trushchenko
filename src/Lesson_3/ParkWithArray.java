@@ -3,20 +3,20 @@ package Lesson_3;
 import java.time.LocalTime;
 
 public class ParkWithArray {
-    public class AttractionArray {
-        public String name;
-        public LocalTime openTime;
-        public LocalTime closeTime;
-        public double price;
+    private class AttractionArray {
+        private String name;
+        private LocalTime openTime;
+        private LocalTime closeTime;
+        private double price;
 
-        public AttractionArray(String name, LocalTime openTime, LocalTime closeTime, double price) {
+        private AttractionArray(String name, LocalTime openTime, LocalTime closeTime, double price) {
             this.name = name;
             this.openTime = openTime;
             this.closeTime = closeTime;
             this.price = price;
         }
 
-        public void printAttractionArrayInfo() {
+        private void printAttractionArrayInfo() {
             System.out.println("Название аттракциона: " + name);
             System.out.println("Время открытия: " + openTime);
             System.out.println("Время закрытия: " + closeTime);
@@ -24,13 +24,13 @@ public class ParkWithArray {
         }
     }
 
-    public AttractionArray[] attractionArrays;
+    private AttractionArray[] attractionArrays;
 
-    public ParkWithArray(int capacity) {
+    protected ParkWithArray(int capacity) {
         attractionArrays = new AttractionArray[capacity];
     }
 
-    public void addAttractionArray(String name, LocalTime openTime, LocalTime closeTime, double price) {
+    protected void addAttractionArray(String name, LocalTime openTime, LocalTime closeTime, double price) {
         for (int i = 0; i < attractionArrays.length; i++) {
             if (attractionArrays[i] == null) {
                 attractionArrays[i] = new AttractionArray(name, openTime, closeTime, price);
@@ -40,7 +40,7 @@ public class ParkWithArray {
         System.out.println("Нельзя добавить новый аттракцион!");
     }
 
-    public void printAttractionArray() {
+    protected void printAttractionArray() {
         System.out.println("Аттракционы: ");
         for (AttractionArray attractionArray : attractionArrays) {
             if (attractionArray != null) {
