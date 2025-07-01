@@ -3,18 +3,18 @@ package Lesson_5;
 public class ArrayExceptions {
 
     static class MyArraySizeException extends Exception {
-        public MyArraySizeException(String message) {
+        private MyArraySizeException(String message) {
             super(message);
         }
     }
 
     static class MyArrayDataException extends Exception {
-        public MyArrayDataException(int row, int col, String value) {
+        private MyArrayDataException(int row, int col, String value) {
             super("Ошибка в ячейке " + row + " , " + col + " - значение: " + value);
         }
     }
 
-    public static int arrayOperations(String[][] array) throws MyArraySizeException, MyArrayDataException {
+    protected static int arrayOperations(String[][] array) throws MyArraySizeException, MyArrayDataException {
         if (array.length != 4) {
             throw new MyArraySizeException("В массиве должно быть 4 строки!");
         }
@@ -36,7 +36,8 @@ public class ArrayExceptions {
         }
         return sum;
     }
-    public static void printIndexOutOfBounds() {
+
+    protected static void printIndexOutOfBounds() {
         System.out.println("\nДемонстрация ArrayIndexOutOfBoundsException:");
         try {
             String[][] array = new String[4][4];
