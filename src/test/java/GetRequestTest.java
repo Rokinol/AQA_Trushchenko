@@ -1,5 +1,3 @@
-import io.restassured.RestAssured;
-import io.restassured.config.LogConfig;
 import org.junit.jupiter.api.Test;
 
 import static io.restassured.RestAssured.*;
