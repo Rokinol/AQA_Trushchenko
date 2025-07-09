@@ -1,5 +1,8 @@
 package Lesson_5;
 
+import Lesson_5.exceptions.MyArrayDataException;
+import Lesson_5.exceptions.MyArraySizeException;
+
 public class MainLesson5 {
     public static void main(String[] args) {
 
@@ -27,21 +30,21 @@ public class MainLesson5 {
         //блок с корректным массивом
         try {
             System.out.println("Сумма корректного массива: " + ArrayExceptions.arrayOperations(correctArray));
-        } catch (ArrayExceptions.MyArraySizeException | ArrayExceptions.MyArrayDataException e) {
+        } catch (MyArraySizeException | MyArrayDataException e) {
             System.out.println("Ошибка: " + e.getMessage());
         }
 
         //блок массива с неверными данными
         try {
             System.out.println("Сумма массива с ошибкой в данных: " + ArrayExceptions.arrayOperations(invalidArray));
-        } catch (ArrayExceptions.MyArraySizeException | ArrayExceptions.MyArrayDataException e){
+        } catch (MyArraySizeException | MyArrayDataException e){
             System.out.println("Ошибка: " + e.getMessage());
         }
 
         //блок массива неверного размера
         try {
             System.out.println("Сумма массива неправильного размера: " + ArrayExceptions.arrayOperations(wrongSizeArray));
-        } catch (ArrayExceptions.MyArraySizeException | ArrayExceptions.MyArrayDataException e) {
+        } catch (MyArraySizeException | MyArrayDataException e) {
             System.out.println("Ошибка: " + e.getMessage());
         }
 

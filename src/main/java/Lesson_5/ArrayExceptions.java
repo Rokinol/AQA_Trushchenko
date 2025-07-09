@@ -1,18 +1,9 @@
 package Lesson_5;
 
+import Lesson_5.exceptions.MyArrayDataException;
+import Lesson_5.exceptions.MyArraySizeException;
+
 public class ArrayExceptions {
-
-    static class MyArraySizeException extends Exception {
-        private MyArraySizeException(String message) {
-            super(message);
-        }
-    }
-
-    static class MyArrayDataException extends Exception {
-        private MyArrayDataException(int row, int col, String value) {
-            super("Ошибка в ячейке " + row + " , " + col + " - значение: " + value);
-        }
-    }
 
     protected static int arrayOperations(String[][] array) throws MyArraySizeException, MyArrayDataException {
         if (array.length != 4) {
