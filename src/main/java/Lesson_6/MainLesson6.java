@@ -30,16 +30,19 @@ public class MainLesson6 {
 
         //Task2
         TelephoneNumbers numbers = new TelephoneNumbers();
-        numbers.add("Иванов", "1234561");
-        numbers.add("Петров", "1234562");
-        numbers.add("Иванов", "1234563");
-        numbers.add("Семенов", "1234564");
-        numbers.add("Семенов", "1234565");
-        numbers.add("Григорьев", "1234566");
+
+        System.out.println(numbers.add("Иванов", "1234561"));
+        System.out.println(numbers.add("Петров", "1234562"));
+        System.out.println(numbers.add("Иванов", "1234561"));
+        System.out.println(numbers.add("Семенов", "1234564"));
+        System.out.println(numbers.add("Семенов", "1234565"));
+        System.out.println(numbers.add("Григорьев", "1234566"));
 
         System.out.println("Номера Иванова: " + numbers.get("Иванов"));
         System.out.println("Номера Петрова: " + numbers.get("Петров"));
         System.out.println("Номера Семенова: " + numbers.get("Семенов"));
         System.out.println("Номера Григорьева: " + numbers.get("Григорьев"));
+
+        System.out.println(numbers.containsNumber("1234567"));
     }
 }

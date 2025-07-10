@@ -3,16 +3,31 @@ package Lesson_6;
 import java.util.Map;
 
 public class Student {
-    protected String name;
-    protected String group;
-    protected int course;
-    protected Map<String, Integer> grades;
+    private String name;
+    private String group;
+    private int course;
+    private Map<String, Integer> grades;
 
     protected Student(String name, String group, int course, Map<String, Integer> grades) {
         this.name = name;
         this.group = group;
         this.course = course;
         this.grades = grades;
+    }
+    public String getName(){
+        return name;
+    }
+    public String getGroup(){
+        return group;
+    }
+    public int getCourse(){
+        return course;
+    }
+    public Map<String, Integer> getGrades(){
+        return grades;
+    }
+    public void setCourse(int course){
+        this.course = course;
     }
 
     //метод подсчета среднего балла
