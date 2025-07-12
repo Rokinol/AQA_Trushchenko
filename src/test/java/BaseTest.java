@@ -13,7 +13,6 @@ public class BaseTest {
             ChromeDriverManager.getDriver();
             ChromeDriverManager.getDriver().get("https://www.mts.by/");
             ChromeDriverManager.getDriver().findElement(By.id("cookie-agree")).click();
-
         } catch (NoSuchElementException e) {
             System.out.println("Ошибка при поиске элементов" + e.getMessage());
         }
