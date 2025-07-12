@@ -20,7 +20,8 @@ public class PayPartnersTest extends BaseTest {
             System.out.println("Поиск элементов по XPath");
             for (String alt : altTexts) {
                 ChromeDriverManager.getDriver()
-                        .findElement(By.xpath("//img[@alt=\"" + alt + "\"]")).isDisplayed();
+                        .findElement(By.xpath("//*[@id=\"pay-section\"]//img[@alt=\"" + alt + "\"]"))
+                        .isDisplayed();
                 System.out.println("Элемент найден");
             }
         } catch (NoSuchElementException e) {
