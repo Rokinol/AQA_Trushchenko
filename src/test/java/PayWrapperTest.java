@@ -10,19 +10,19 @@ public class PayWrapperTest extends BaseTest {
         try {
             System.out.println("Поиск элемента по XPath");
             ChromeDriverManager.getDriver()
-                    .findElement(By.xpath("//div[@id='pay-section']//section[@class=\"pay\"]"))
+                    .findElement(By.xpath("//h2[contains(text(), 'Онлайн пополнение')]"))
                     .isDisplayed();
             System.out.println("Элемент найден");
 
             //для проверки работы
             System.out.println("Поиск элемента по XPath");
             ChromeDriverManager.getDriver()
-                    .findElement(By.xpath("//div[@id='pay-section']//section[@class=\"poy\"]"))
+                    .findElement(By.xpath("//h2[contains(text(), 'Онлайн пополнение без комиссии')]"))
                     .isDisplayed();
             System.out.println("Элемент найден");
 
         } catch (NoSuchElementException e) {
-            System.out.println("Элемент не найден " + e.getMessage());
+            System.out.println("Элемент не найден: " + e.getMessage());
         }
     }
 }

@@ -21,7 +21,7 @@ public class LinkTextTest extends BaseTest {
                     .isDisplayed();
             System.out.println("Элемент 'Опалта банковской картой' при переходе по ссылке найден ");
         } catch (NoSuchElementException e) {
-            System.out.println("Страница не найдена");
+            System.out.println("Страница не найдена: " + e.getMessage());
         }
     }
 }

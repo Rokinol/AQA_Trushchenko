@@ -15,7 +15,7 @@ public class BaseTest {
             ChromeDriverManager.getDriver().findElement(By.id("cookie-agree")).click();
 
         } catch (NoSuchElementException e) {
-            System.out.println("Ошибка при поиске элементов");
+            System.out.println("Ошибка при поиске элементов" + e.getMessage());
         }
     }
 

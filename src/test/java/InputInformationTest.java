@@ -26,7 +26,7 @@ public class InputInformationTest extends BaseTest {
                     .findElement(By.xpath("//*[@id=\"pay-connection\"]/button")).click();
             System.out.println("Информация введена и нажата кнопка 'Продолжить'");
         } catch (NoSuchElementException e) {
-            System.out.println("Введена неверная информация или не нажата кнопка 'Продолжить'");
+            System.out.println("Введена неверная информация или не нажата кнопка 'Продолжить': " + e.getMessage());
         }
 
         //без паузы программы у меня не переключался фрейм
@@ -43,7 +43,7 @@ public class InputInformationTest extends BaseTest {
             ChromeDriverManager.getDriver().findElement(By.xpath("//button[contains(text(), 'Оплатить')]")).isDisplayed();
             System.out.println("Элемент найден");
         } catch (NoSuchElementException e) {
-            System.out.println("Элемен не найден");
+            System.out.println("Элемен не найден: " + e.getMessage());
         }
     }
 }
