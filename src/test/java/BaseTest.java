@@ -6,12 +6,14 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriverException;
 
 public class BaseTest {
+    private static final String BORDER = "=========================================";
 
     @BeforeEach
     protected void setUp() {
         try {
-            System.out.println("Начало работы теста");
-            System.out.println("-------------------");
+            System.out.println("\n" + BORDER);
+            System.out.println(" Начало теста ");
+            System.out.println(BORDER + "\n");
             ChromeDriverManager.getDriver();
             ChromeDriverManager.getDriver().get("https://www.mts.by/");
             ChromeDriverManager.getDriver().findElement(By.id("cookie-agree")).click();
@@ -25,8 +27,9 @@ public class BaseTest {
     @AfterEach
     protected void tearDown() {
         try {
+            System.out.println("\n" + BORDER);
+            System.out.println("Окончание теста");
             ChromeDriverManager.quitDriver();
-            System.out.println("Окончание работы теста");
         } catch (WebDriverException e) {
             handleError("Ошибка при завершении теста", e);
         }
@@ -43,12 +46,14 @@ public class BaseTest {
             String testName = context.getDisplayName();
             System.err.println("\nXXX Тест УПАЛ: " + testName + " XXX");
             cause.printStackTrace();
+            System.out.println(BORDER + "\n");
         }
 
         @Override
         public void testSuccessful(ExtensionContext context) {
             String testName = context.getDisplayName();
             System.out.println("\n✓✓✓ Тест ПРОЙДЕН: " + testName + " ✓✓✓");
+            System.out.println(BORDER + "\n");
         }
     }
 }

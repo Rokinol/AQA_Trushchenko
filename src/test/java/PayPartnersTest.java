@@ -6,13 +6,6 @@ public class PayPartnersTest extends BaseTest {
     @Test
     void payPartnersImg() {
 
-        new MainPage()
-                .areAllPartnersDisplayed();
-    }
-//Для конкретной картинки/логотипа
-    @Test
-    void payPartnerVisa() {
-        new MainPage()
-                .isPartnerDisplayed("Visa");
+        new MainPage().areAllPaymentLogosDisplayed();
     }
 }

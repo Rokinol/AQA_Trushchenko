@@ -5,10 +5,48 @@ import org.junit.jupiter.api.extension.ExtendWith;
 public class PlaceholdersTest extends BaseTest {
 
     @Test
-    void communicationServices() {
-        new MainPage()
-                .verifyAllPlaceholders();
+    void checkAllPlaceholders() {
+        MainPage mainPage = new MainPage();
+        mainPage.checkFirstPlaceholders();
+        mainPage.clickDropDown()
+                .clickDropDownInternet()
+                .checkHomeInternetPlaceholders();
+        mainPage.clickDropDown()
+                .clickDropDownInternet()
+                .checkHomeInternetPlaceholders();
+        mainPage.clickDropDown()
+                .clickDropDownInstalment()
+                .checkInstalmentPlaceholders();
+        mainPage.clickDropDown()
+                .clickDropDownDebt()
+                .checkDebtPlaceholders();
+
     }
 
+    /*
+    //Отдельные тесты для каждой вкладки
+    @Test
+    void homeInternet() {
+        new MainPage()
+                .clickDropDown()
+                .clickDropDownInternet()
+                .checkHomeInternetPlaceholders();
+    }
 
+    @Test
+    void instalment() {
+        new MainPage()
+                .clickDropDown()
+                .clickDropDownInstalment()
+                .checkInstalmentPlaceholders();
+    }
+
+    @Test
+    void debt() {
+        new MainPage()
+                .clickDropDown()
+                .clickDropDownDebt()
+                .checkDebtPlaceholders();
+    }
+     */
 }

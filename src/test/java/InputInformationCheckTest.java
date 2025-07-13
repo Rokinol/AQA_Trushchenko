@@ -1,17 +1,15 @@
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
-import org.openqa.selenium.By;
 
 @ExtendWith(BaseTest.TestWatcherExtension.class)
-public class InputInformationTest extends BaseTest {
+public class InputInformationCheckTest extends BaseTest {
 
     @Test
-    void inputInformation() {
-        new MainPage()
-                .enterPhone("297777777")
-                .enterSum("10")
-                .enterEmail("test@mail.com")
-                .clickContinue();
+    void inputAndCheckInformation() {
+        MainPage mainPage = new MainPage();
+        mainPage.enterPhone("297777777");
+        mainPage.enterSum("10");
+        mainPage.clickContinue();
 
         try {
             System.out.println("Остановка работы для переключения фрейма");
@@ -21,6 +19,8 @@ public class InputInformationTest extends BaseTest {
         }
 
         ChromeDriverManager.getDriver().switchTo().frame(1);
-        ChromeDriverManager.getDriver().findElement(By.xpath("//button[contains(text(), 'Оплатить')]")).isDisplayed();
+        mainPage.checkPaymentSumInfo();
+        mainPage.checkPlaceholdersOnPayWindow();
+        mainPage.checkPayPartnerLogos();
     }
 }
