@@ -32,7 +32,7 @@ public class InputInformationTest extends BaseTest {
         //без паузы программы у меня не переключался фрейм
         try {
             System.out.println("Остановка работы для переключения фрейма");
-            Thread.sleep(500);
+            Thread.sleep(3000);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
@@ -43,7 +43,7 @@ public class InputInformationTest extends BaseTest {
             ChromeDriverManager.getDriver().findElement(By.xpath("//button[contains(text(), 'Оплатить')]")).isDisplayed();
             System.out.println("Элемент найден");
         } catch (NoSuchElementException e) {
-            System.out.println("Элемен не найден: " + e.getMessage());
+            System.out.println("Элемент не найден: " + e.getMessage());
         }
     }
 }

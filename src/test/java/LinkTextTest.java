@@ -19,7 +19,7 @@ public class LinkTextTest extends BaseTest {
             ChromeDriverManager.getDriver()
                     .findElement(By.xpath("//h3[contains(text(), 'Оплата банковской картой')]"))
                     .isDisplayed();
-            System.out.println("Элемент 'Опалта банковской картой' при переходе по ссылке найден ");
+            System.out.println("Элемент 'Оплата банковской картой' при переходе по ссылке найден ");
         } catch (NoSuchElementException e) {
             System.out.println("Страница не найдена: " + e.getMessage());
         }
