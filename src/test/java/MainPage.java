@@ -89,6 +89,7 @@ public class MainPage extends BasePage {
         emailField.sendKeys(email);
         return this;
     }
+
     @Step("Проверка текста в пустых плейсхолдерах")
     public void checkFirstPlaceholders() {
         assert phoneField.getAttribute("placeholder").equals("Номер телефона");
