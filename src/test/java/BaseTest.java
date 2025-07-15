@@ -1,3 +1,4 @@
+import io.qameta.allure.Step;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.extension.ExtensionContext;
@@ -9,6 +10,7 @@ public class BaseTest {
     private static final String BORDER = "=========================================";
 
     @BeforeEach
+    @Step("Начало работы теста. Включение драйвера. Открываем страницу для проверки")
     protected void setUp() {
         try {
             System.out.println("\n" + BORDER);
@@ -25,6 +27,7 @@ public class BaseTest {
     }
 
     @AfterEach
+    @Step("Окончание работы теста. Выключение драйвера")
     protected void tearDown() {
         try {
             System.out.println("\n" + BORDER);

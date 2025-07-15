@@ -1,3 +1,4 @@
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.openqa.selenium.By;
@@ -6,6 +7,7 @@ import org.openqa.selenium.By;
 public class InputInformationTest extends BaseTest {
 
     @Test
+    @DisplayName("Тест: Заполнение полей и проверка работы кнопки 'Продолжить'")
     void inputInformation() {
         new MainPage()
                 .enterPhone("297777777")

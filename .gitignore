@@ -1,4 +1,6 @@
 ### IntelliJ IDEA ###
+allure-report/
+allure-results/
 target/
 out/
 .idea

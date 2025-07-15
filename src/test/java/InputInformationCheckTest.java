@@ -1,3 +1,4 @@
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 
@@ -5,6 +6,8 @@ import org.junit.jupiter.api.extension.ExtendWith;
 public class InputInformationCheckTest extends BaseTest {
 
     @Test
+    @DisplayName
+            ("Тест: Проверка корректности  отображения суммы, номера телефона, надписей в незаполненных полях для ввода, наличие иконок платежных систем")
     void inputAndCheckInformation() {
         MainPage mainPage = new MainPage();
         mainPage.enterPhone("297777777");
