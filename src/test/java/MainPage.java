@@ -1,6 +1,12 @@
 import io.qameta.allure.Step;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
+
+import java.time.Duration;
+
+import static org.junit.jupiter.api.Assertions.*;
 
 public class MainPage extends BasePage {
 
@@ -23,6 +29,9 @@ public class MainPage extends BasePage {
     //Окно онлайн пополнения
     @FindBy(xpath = "//div[@class=\"pay__wrapper\"]")
     private WebElement payWindow;
+
+    @FindBy(xpath = "//div[@class=\"pay__wrapper\"]//h2")
+    private WebElement payWindowText;
 
     //Кнопка продолжить
     @FindBy(xpath = "//button[contains(text(), 'Продолжить')]")
@@ -88,48 +97,29 @@ public class MainPage extends BasePage {
     @FindBy(xpath = "//a[contains(@href, '/help/poryadok-oplaty-i-bezopasnost-internet-platezhey/')]")
     private WebElement link;
 
-    //Локаторы в Окне оплаты
-    //сумма в появившемся окне
-    @FindBy(xpath = "//div[@class=\"pay-description__cost\"]//span[contains(text(), '10.00 BYN')]")
-    private WebElement paymentSum;
+    //Методы
 
-    //сумма на кнопке Оплатить
-    @FindBy(xpath = "//button[contains(text(), '10.00 BYN')]")
-    private WebElement buttonPaymentSum;
-
-    //Номер карты
-    @FindBy(xpath = "//label[contains(text(), 'Номер карты')]")
-    private WebElement cardNumberPlaceholder;
-
-    //Поле Срок действия
-    @FindBy(xpath = "//label[contains(text(), 'Срок действия')]")
-    private WebElement validityPlaceholder;
-
-    //Поле CVC
-    @FindBy(xpath = "//label[contains(text(), 'CVC')]")
-    private WebElement cvcPlaceholder;
-
-    //Поле ФИО
-    @FindBy(xpath = "//label[contains(text(), 'Имя и фамилия на карте')]")
-    private WebElement userDataPlaceholder;
-
-    //Логотипы платежных систем в окне оплаты
-    @FindBy(xpath = "//div[@class=\"icons-container ng-tns-c2312288139-1\"]")
-    private WebElement payPartnerLogos;
-
-    //работа с лого платежных систем
     @Step("Проверка наличия логотипов платежных систем")
-    public boolean areAllPaymentLogosDisplayed() {
-        return visaLogo.isDisplayed() &&
-                verifiedByVisaLogo.isDisplayed() &&
-                masterCardLogo.isDisplayed() &&
-                masterCardSecureCodeLogo.isDisplayed() &&
-                belkartLogo.isDisplayed();
+    public void areAllPaymentLogosDisplayed() {
+        assertAll(
+                () -> assertTrue(visaLogo.isDisplayed(), "Логотип Visa не отображается"),
+                () -> assertTrue(verifiedByVisaLogo.isDisplayed(), "Логотип Verified by Visa не отображается"),
+                () -> assertTrue(masterCardLogo.isDisplayed(), "Логотип MasterCard не отображается"),
+                () -> assertTrue(masterCardSecureCodeLogo.isDisplayed(), "Логотип MasterCard Secure Code не отображается"),
+                () -> assertTrue(belkartLogo.isDisplayed(), "Логотип Белкарт не отображается")
+        );
     }
 
     @Step("Проверка отображения поля 'Онлайн пополнение без комиссии'")
-    public boolean isMainWindowDisplayed() {
-        return payWindow.getText().equals("Онлайн пополнение без комиссии");
+    public void isMainWindowDisplayed() {
+        assertTrue(payWindow.isDisplayed(),
+                "Элемент с текстом 'Онлайн пополнение' не отображается на странице");
+
+        String actualText = payWindowText.getText()
+                .replaceAll("\\s+", " ")
+                .trim();
+        assertTrue(actualText.contains("Онлайн пополнение без комиссии"),
+                "Текст не совпадает. Ожидалось: 'Онлайн пополнение без комиссии', Фактически: '" + actualText + "'");
     }
 
     @Step("Клик по кнопке 'Продолжить'")
@@ -164,9 +154,16 @@ public class MainPage extends BasePage {
 
     @Step("Проверка текста в пустых плейсхолдерах")
     public void checkFirstPlaceholders() {
-        assert phoneField.getAttribute("placeholder").equals("Номер телефона");
-        assert sumField.getAttribute("placeholder").equals("Сумма");
-        assert emailField.getAttribute("placeholder").equals("E-mail для отправки чека");
+        assertAll(
+                () -> assertEquals("Номер телефона", phoneField.getAttribute("placeholder"),
+                        "Неверный плейсхолдер для поля 'Номер телефона'"),
+
+                () -> assertEquals("Сумма", sumField.getAttribute("placeholder"),
+                        "Неверный плейсхолдер для поля 'Сумма'"),
+
+                () -> assertEquals("E-mail для отправки чека", emailField.getAttribute("placeholder"),
+                        "Неверный плейсхолдер для поля 'E-mail'")
+        );
     }
 
     @Step("Клик по дропдаун кнопке 'Домашний интернет'")
@@ -177,9 +174,14 @@ public class MainPage extends BasePage {
 
     @Step("Проверка текста в пустых плейсхолдерах")
     public void checkHomeInternetPlaceholders() {
-        assert internetPhoneField.getAttribute("placeholder").equals("Номер абонента");
-        assert internetSumField.getAttribute("placeholder").equals("Сумма");
-        assert internetEmailField.getAttribute("placeholder").equals("E-mail для отправки чека");
+        assertAll(
+                () -> assertEquals("Номер абонента", internetPhoneField.getAttribute("placeholder"),
+                        "Неверный плейсхолдер для поля номера абонента"),
+                () -> assertEquals("Сумма", internetSumField.getAttribute("placeholder"),
+                        "Неверный плейсхолдер для поля суммы"),
+                () -> assertEquals("E-mail для отправки чека", internetEmailField.getAttribute("placeholder"),
+                        "Неверный плейсхолдер для поля email")
+        );
     }
 
     @Step("Клик по дропдаун кнопке 'Рассрочка'")
@@ -190,9 +192,14 @@ public class MainPage extends BasePage {
 
     @Step("Проверка текста в пустых плейсхолдерах")
     public void checkInstalmentPlaceholders() {
-        assert scoreInstalmentField.getAttribute("placeholder").equals("Номер счета на 44");
-        assert sumInstalmentField.getAttribute("placeholder").equals("Сумма");
-        assert emailInstalmentField.getAttribute("placeholder").equals("E-mail для отправки чека");
+        assertAll(
+                () -> assertEquals("Номер счета на 44", scoreInstalmentField.getAttribute("placeholder"),
+                        "Неверный плейсхолдер для номера счета"),
+                () -> assertEquals("Сумма", sumInstalmentField.getAttribute("placeholder"),
+                        "Неверный плейсхолдер для суммы"),
+                () -> assertEquals("E-mail для отправки чека", emailInstalmentField.getAttribute("placeholder"),
+                        "Неверный плейсхолдер для email")
+        );
     }
 
     @Step("Клик по дропдаун кнопке 'Задолженность'")
@@ -203,42 +210,19 @@ public class MainPage extends BasePage {
 
     @Step("Проверка текста в пустых плейсхолдерах")
     public void checkDebtPlaceholders() {
-        assert scoreArrearsField.getAttribute("placeholder").equals("Номер счета на 2073");
-        assert sumArrearsField.getAttribute("placeholder").equals("Сумма");
-        assert emailArrearsField.getAttribute("placeholder").equals("E-mail для отправки чека");
+        assertAll(
+                () -> assertEquals("Номер счета на 2073", scoreArrearsField.getAttribute("placeholder"),
+                        "Неверный плейсхолдер для номера счета"),
+                () -> assertEquals("Сумма", sumArrearsField.getAttribute("placeholder"),
+                        "Неверный плейсхолдер для суммы"),
+                () -> assertEquals("E-mail для отправки чека", emailArrearsField.getAttribute("placeholder"),
+                        "Неверный плейсхолдер для email")
+        );
     }
 
     @Step("Переход по ссылке 'Подробнее о сервисе'")
     public MainPage clickLink() {
         link.click();
         return this;
-    }
-
-    @Step("Проверка введенной суммы")
-    public void checkPaymentSumInfo() {
-        assert paymentSum.isDisplayed();
-        assert "10.00 BYN".equals(paymentSum.getText().trim());
-
-        assert buttonPaymentSum.isDisplayed();
-        assert "Оплатить 10.00 BYN".equals(buttonPaymentSum.getText());
-    }
-
-    @Step("Проверка текста в плейсхолдерах окна 'Оплата: Услуги связи'")
-    public void checkPlaceholdersOnPayWindow() {
-        //проверяю что локаторы верные
-        assert cardNumberPlaceholder.isDisplayed();
-        assert validityPlaceholder.isDisplayed();
-        assert cvcPlaceholder.isDisplayed();
-        assert userDataPlaceholder.isDisplayed();
-
-        assert "Номер карты".equals(cardNumberPlaceholder.getText().trim());
-        assert "Срок действия".equals(validityPlaceholder.getText().trim());
-        assert "CVC".equals(cvcPlaceholder.getText().trim());
-        assert "Имя и фамилия на карте".equals(userDataPlaceholder.getText().trim());
-    }
-
-    @Step("Проверка логотипов платежных систем окна 'Оплата: Услуги связи'")
-    public void checkPayPartnerLogos() {
-        assert payPartnerLogos.isDisplayed();
     }
 }

@@ -19,8 +19,9 @@ public class InputInformationCheckTest extends BaseTest {
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
         wait.until(ExpectedConditions.frameToBeAvailableAndSwitchToIt(1));
 
-        mainPage.checkPaymentSumInfo();
-        mainPage.checkPlaceholdersOnPayWindow();
-        mainPage.checkPayPartnerLogos();
+        PaymentWindow paymentWindow = new PaymentWindow();
+        paymentWindow.checkPaymentSumInfo();
+        paymentWindow.checkPlaceholdersOnPayWindow();
+        paymentWindow.checkPayPartnerLogos();
     }
 }
