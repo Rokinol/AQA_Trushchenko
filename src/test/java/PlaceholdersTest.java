@@ -1,8 +1,6 @@
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.extension.ExtendWith;
 
-@ExtendWith(BaseTest.TestWatcherExtension.class)
 public class PlaceholdersTest extends BaseTest {
 
     @Test

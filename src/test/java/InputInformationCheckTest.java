@@ -1,8 +1,10 @@
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.extension.ExtendWith;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
-@ExtendWith(BaseTest.TestWatcherExtension.class)
+import java.time.Duration;
+
 public class InputInformationCheckTest extends BaseTest {
 
     @Test
@@ -14,14 +16,9 @@ public class InputInformationCheckTest extends BaseTest {
         mainPage.enterSum("10");
         mainPage.clickContinue();
 
-        try {
-            System.out.println("Остановка работы для переключения фрейма");
-            Thread.sleep(3000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+        wait.until(ExpectedConditions.frameToBeAvailableAndSwitchToIt(1));
 
-        ChromeDriverManager.getDriver().switchTo().frame(1);
         mainPage.checkPaymentSumInfo();
         mainPage.checkPlaceholdersOnPayWindow();
         mainPage.checkPayPartnerLogos();
