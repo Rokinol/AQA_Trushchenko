@@ -19,6 +19,6 @@ public class BaseTest {
 
     @AfterEach
     void tearDown() {
-       driver.quit();
+       ChromeDriverManager.quitDriver();
     }
 }
