@@ -13,7 +13,6 @@ public class InputInformationTest extends BaseTest {
         MainPage mainPage = new MainPage();
         mainPage.enterPhone("297777777");
         mainPage.enterSum("10");
-        mainPage.enterEmail("test@mail.com");
         mainPage.clickContinue();
 
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));

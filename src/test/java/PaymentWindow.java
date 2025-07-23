@@ -13,10 +13,10 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 public class PaymentWindow extends BasePage {
 
     //Локаторы в Окне оплаты
-    //сумма в появившемся окне
     @FindBy(xpath = "//div[@class=\"app-wrapper__content\"]")
     private WebElement payWindow;
 
+    //сумма в появившемся окне
     @FindBy(xpath = "//div[@class=\"pay-description__cost\"]//span[contains(text(), '10.00 BYN')]")
     private WebElement paymentSum;
 
@@ -45,10 +45,10 @@ public class PaymentWindow extends BasePage {
     private WebElement payPartnerLogos;
 
     @Step("Проверка наличия окна Оплаты")
-    public void checkPayWindow(){
+    public void checkPayWindow() {
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
         WebElement visiblePayWindow = wait.until(ExpectedConditions.visibilityOf(payWindow));
-        assertTrue(payWindow.isDisplayed(), "Окно Оплаты не отображается");
+                assertTrue(visiblePayWindow.isDisplayed(),"Кнопка оплаты не отображается");
     }
 
     @Step("Проверка введенной суммы")

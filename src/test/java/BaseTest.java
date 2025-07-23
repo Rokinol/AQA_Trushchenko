@@ -29,6 +29,6 @@ public class BaseTest {
 
         System.out.println("\n" + BORDER);
         System.out.println("Окончание теста");
-        driver.quit();
+        ChromeDriverManager.quitDriver();
     }
 }
