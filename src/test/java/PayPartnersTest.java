@@ -1,6 +1,8 @@
 import org.junit.jupiter.api.Test;
 import org.openqa.selenium.By;
-import org.openqa.selenium.NoSuchElementException;
+import org.openqa.selenium.WebElement;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import java.util.List;
 
 public class PayPartnersTest extends BaseTest {
 
@@ -13,20 +15,13 @@ public class PayPartnersTest extends BaseTest {
                 "MasterCard",
                 "MasterCard Secure Code",
                 "Белкарт",
-                "null элемент" //для проверки работы try-catch
+                //"null" для проверки работы assert
         };
 
-        try {
-            System.out.println("Поиск элементов по XPath");
-            for (String alt : altTexts) {
-                ChromeDriverManager.getDriver()
-                        .findElement(By.xpath("//*[@id=\"pay-section\"]//img[@alt=\"" + alt + "\"]"))
-                        .isDisplayed();
-                System.out.println("Элемент найден");
-            }
-        } catch (NoSuchElementException e) {
-            System.out.println("Элемент не найден " + e.getMessage());
-
+        for (String alt : altTexts) {
+            List<WebElement> logos = driver.findElements(
+                    By.xpath("//*[@id=\"pay-section\"]//img[@alt=\"" + alt + "\"]"));
+            assertFalse(logos.isEmpty(), "Логотип '" + alt + "' не найден");
         }
     }
 }

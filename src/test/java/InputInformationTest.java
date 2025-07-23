@@ -1,49 +1,30 @@
 import org.junit.jupiter.api.Test;
 import org.openqa.selenium.By;
-import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
+
+import java.time.Duration;
 
 public class InputInformationTest extends BaseTest {
 
     @Test
     void inputInformationTest() {
+        WebElement phoneInput = driver.findElement(By.xpath("//input[@id=\"connection-phone\"]"));
+        phoneInput.click();
+        phoneInput.clear();
+        phoneInput.sendKeys("297777777");
 
-        try {
-            System.out.println("Ввод информации");
-            WebElement phoneInput = ChromeDriverManager.getDriver()
-                    .findElement(By.xpath("//input[@id=\"connection-phone\"]"));
-            phoneInput.click();
-            phoneInput.clear();
-            phoneInput.sendKeys("297777777");
+        WebElement sumInput = driver.findElement(By.xpath("//input[@id=\"connection-sum\"]"));
+        sumInput.click();
+        sumInput.clear();
+        sumInput.sendKeys("10");
 
-            WebElement sumInput = ChromeDriverManager.getDriver()
-                    .findElement(By.xpath("//input[@id=\"connection-sum\"]"));
-            sumInput.click();
-            sumInput.clear();
-            sumInput.sendKeys("10");
+        driver.findElement(By.xpath("//*[@id=\"pay-connection\"]/button")).click();
 
-            ChromeDriverManager.getDriver()
-                    .findElement(By.xpath("//*[@id=\"pay-connection\"]/button")).click();
-            System.out.println("Информация введена и нажата кнопка 'Продолжить'");
-        } catch (NoSuchElementException e) {
-            System.out.println("Введена неверная информация или не нажата кнопка 'Продолжить': " + e.getMessage());
-        }
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+        wait.until(ExpectedConditions.frameToBeAvailableAndSwitchToIt(1));
 
-        //без паузы программы у меня не переключался фрейм
-        try {
-            System.out.println("Остановка работы для переключения фрейма");
-            Thread.sleep(3000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
-
-        try {
-            System.out.println("Переключение фрейма");
-            ChromeDriverManager.getDriver().switchTo().frame(1);
-            ChromeDriverManager.getDriver().findElement(By.xpath("//button[contains(text(), 'Оплатить')]")).isDisplayed();
-            System.out.println("Элемент найден");
-        } catch (NoSuchElementException e) {
-            System.out.println("Элемент не найден: " + e.getMessage());
-        }
+        driver.findElement(By.xpath("//button[contains(text(), 'Оплатить')]")).isDisplayed();
     }
 }
